@@ -1,0 +1,30 @@
+ {
+        "family": "sample-fargate",
+        "networkMode": "awsvpc",
+        "taskRoleArn": "arn:aws:iam::<acc-no>:role/DocAssembleExecutionRole", 
+        "containerDefinitions": [
+            {
+                "name": "fargate-app",
+                "image": "humio/humio:latest",
+                "portMappings": [
+                    {
+                        "containerPort": 8080,
+                        "hostPort": 8080,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "AUTHENTICATION_METHOD",
+                        "value": "none"
+                    }
+                ]
+            }
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "4096",
+        "memory": "8192"
+}
